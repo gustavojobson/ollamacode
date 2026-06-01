@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Gitleaks
-        uses: zricethezav/gitleaks-action@v2
+        uses: zricethezav/gitleaks-action@v3
 
   container-scan:
     runs-on: ubuntu-latest
