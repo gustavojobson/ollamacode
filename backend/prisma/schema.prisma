@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  files     File[]
+  memories  Memory[]
+}
+
+model File {
+  id        String   @id @default(uuid())
+  path      String
+  content   String
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model AgentLog {
+  id        String   @id @default(uuid())
+  agent     String
+  message   String
+  timestamp DateTime @default(now())
+}
+
+model Memory {
+  id        String   @id @default(uuid())
+  type      String
+  content   String
+  // Using Json for embedding to support Postgres without pgvector extension setup, or just standard text arrays
+  embedding Json
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}

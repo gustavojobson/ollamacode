@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: ollamacode-db
+    environment:
+      POSTGRES_USER: ollama
+      POSTGRES_PASSWORD: ollama
+      POSTGRES_DB: ollamacode
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://ollama:ollama@db:5432/ollamacode
+    depends_on:
+      - backend
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+
+volumes:
+  pgdata:

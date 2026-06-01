@@ -1,0 +1,6 @@
+{
+  "name": "OllamaCode",
+  "description": "IDE Open Source baseada em IA para desenvolvimento utilizando modelos locais do Ollama",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

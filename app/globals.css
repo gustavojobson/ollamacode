@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  
+  --color-ai-purple: #8b5cf6;
+  --color-ai-purple-dark: #7c3aed;
+  
+  --color-bg-dark: #09090b;
+  --color-bg-panel: #18181b;
+  --color-bg-panel-hover: #27272a;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+  }
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden; /* IDE layout shouldn't scroll globally */
+}
+
+/* Custom minimal scrollbars for the IDE */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46; 
+  border-radius: 5px;
+  border: 2px solid #18181b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b; 
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
